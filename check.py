@@ -31,9 +31,13 @@ class MinecraftUsernameChecker:
             for username in self.available_usernames:
                 print(f"  {username}")
             
-            # Auto-save to CSV
+            # Create export directory if it doesn't exist
+            export_dir = "export"
+            os.makedirs(export_dir, exist_ok=True)
+            
+            # Auto-save to CSV in export directory
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f"emergency_save_{timestamp}.csv"
+            filename = os.path.join(export_dir, f"emergency_save_{timestamp}.csv")
             
             try:
                 with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
@@ -57,10 +61,17 @@ class MinecraftUsernameChecker:
         if not self.available_usernames:
             print("No available usernames to export.")
             return
+        
+        # Create export directory if it doesn't exist
+        export_dir = "export"
+        os.makedirs(export_dir, exist_ok=True)
             
         if filename is None:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f"available_usernames_{timestamp}.csv"
+            filename = os.path.join(export_dir, f"available_usernames_{timestamp}.csv")
+        else:
+            # Ensure the filename is in the export directory
+            filename = os.path.join(export_dir, os.path.basename(filename))
         
         try:
             with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
