@@ -26,7 +26,7 @@ A Python tool to check the availability of 4-character Minecraft usernames using
 1. **Clone or download** this repository
 2. **Navigate** to the project directory:
    ```bash
-   cd username-checker
+   cd 4char-username-checker-for-minecraft
    ```
 3. **Create a virtual environment** (recommended):
    ```bash
